@@ -1,21 +1,15 @@
-# Country-Region-Selector
+# Zuora Compatible Country Region Selector
 
-A feature you often need in forms is a connected country and region dropdown, where the region field gets automatically 
-updated when the user selects a country. It's very easy to code this of course, but it's a pain having to track down 
-all the raw country-region data.
+## Original author: https://github.com/country-regions/country-region-selector
+## Original country and region data: https://github.com/country-regions/country-region-data/blob/master/data.json
 
-This script does all the legwork for you. It lets you add this feature to your form without having to write any code or 
-spend mind-numbing hours on Wikipedia downloading and formatting the data. I did that. It wasn't pretty.
+Connected country and region dropdown, where the region field gets automatically updated when the user selects a country. This is compatible with Zuora, namely the states/regions for United States and Canada. Zuora validates these two countries and not any other.
 
-Pick your version:
-- [standalone script](https://github.com/country-regions/country-region-selector/tree/master/dist/crs.min.js) (no dependencies, just plain JS)
-- [jQuery-dependent version](https://github.com/country-regions/country-region-selector/tree/master/dist/jquery.crs.min.js) 
-- [React component](https://github.com/country-regions/react-country-region-selector) (separate repo).
+- [standalone script](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/crs.min.js) (no dependencies, just plain JS)
+- [jQuery-dependent version](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/jquery.crs.min.js) 
+- [React component](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector) (separate repo).
 
-The reason the files are so large (60K or more) is that they contain all the country and region strings. If you know 
-you're only going to need a small subset of all countries, you may want to generate a custom build containing only that 
-info. That will substantially reduce the file size. See the Custom Builds section at the bottom of this page for more info.
-
+The files contain all the country and region strings. If you know you're only going to need a small subset of all countries, you may want to generate a custom build containing only that info. That will substantially reduce the file size. See the Custom Builds section at the bottom of this page for more info.
 
 ### Features
 
@@ -27,18 +21,6 @@ info. That will substantially reduce the file size. See the Custom Builds sectio
 - The standalone version has no dependencies on other any libs (jQuery etc) and you can include the JS file anywhere you want
 (head/foot).
 - Works with dynamically inserted DOM content.
-
-### Example
-
-Check out the following page for an example of the various ways it can be configured and used.
-[http://country-regions.github.io/country-region-selector/](http://country-regions.github.io/country-region-selector/)
-
-
-### Who maintains the list? 
-
-Me, you - everyone! If you spot anything wonky for a particular country - out of date, incorrect or missing regions,
-a pull request is very welcome. As of 0.3.0 the source data is found in a separate repo so it can be used by anyone: 
-https://github.com/country-regions/country-region-data
 
 ### How to Use
 
@@ -85,14 +67,14 @@ to be named `2-char`, but was renamed for consistency with the new region option
 still works.
 - `data-whitelist` - optional. A comma-delimited lists of country shortcodes that you want to appear in the dropdown. 
 Anything not specified here will be omitted. Take look here for the country list:
-https://github.com/country-regions/country-region-data/blob/master/data.json - you'll want to use the second index 
+source/data.json - you'll want to use the second index 
 of the array, e.g. "AF" for Afghanistan, or "DE" for Germany. Note: if you're worried about file sizes, you can also 
 choose to generate a custom build of the script that only contains those countries you need. This would replace the 
 need for this option. See the Custom Builds section below.
 - `data-blacklist` - optional. Like the data-whitelist, only a blacklist! This lets you display all countries *except*
 the countries that you specify here. If you supply both white and blacklists, the blacklist setting is ignored. Just enter 
 a comma delimited list of country shortcodes. Again, take look here for the country list + their shortcodes: 
-https://github.com/country-regions/country-region-data/blob/master/data.json
+source/data.json
 - `data-preferred` - optional. Lets you target specific countries to get listed at the top of the country dropdown. 
 This should contain a comma-delimited list of the country short codes you want moved, e.g. `data-preferred="CA,US,MX"`.
 - `data-preferred-delim` - optional. If you use the `data-preferred` option, you may want a line separating them from 
@@ -146,7 +128,7 @@ substantially reduce the overall file size, if that's important to you.
 To do this, follow the instructions in the following section to get your dev environment set up, then instead of the 
 last step, run: `grunt customBuild --countries="Canada,United States"`
 
-Just add whatever countries you want to include. To find the exact country names, take a look at the data in https://github.com/country-regions/country-region-data/blob/master/data.json. 
+Just add whatever countries you want to include. To find the exact country names, take a look at the data in *source/data.json* 
 
 This will generate new files in the `/dist` folder that you can use. 
 
@@ -156,9 +138,7 @@ If the country name you're targeting contains a comma, just escape with with a s
 
 ### Notes for Developers
 
-If you want to edit the source code, go right ahead (pull requests welcome, of course!). The unminified source
-is found in the `/source` folder. To re-generate the minified version, just run the Grunt task. In case you're not
-familiar with Grunt, here's how you get that hooked up.
+The unminified source is found in the `/source` folder. To re-generate the minified version, just run the Grunt task. In case you're not familiar with Grunt, here's how you get that hooked up.
 
 1. Install [Node](http://nodejs.org) on your computer.
 2. Clone this repository to your local computer.
@@ -172,35 +152,7 @@ That will then re-generate the minified files in your ./dist folder.
 
 ### Changelog
 
-- `0.5.1` - Nov 22, 2018. Fix for regions not being sorted alphabetically. Thanks, @VincentHokie!
-- `0.5.0` - July 8, 2018. Option to list preferred countries at top of countries dropdown added; country data updated. 
-- `0.4.1` - Nov 7, 2017. Country data updated.
-- `0.4.0` - Jul 25, 2017. Bug fix for blacklist/whitelisted fields in page with multiple other country-region-selectors
-not listing the correct regions.
-- `0.3.6` - Oct 31, 2016. Country data updated.
-- `0.3.5` - July 4, 2016. Bug fix #40. Country data updated.
-- `0.3.4` - July 4, 2016. Bug fix #37. Country data updated.
-- `0.3.3` - June 7, 2016. Updated country-region-data set. 
-- `0.3.2` - May 15, 2016. More country shortcodes added - thanks [Ellen Hutchings](http://github.com/ellenhutchings)! Bug fixes
-- `0.3.1` - Apr 30, 2016. Loads of new country shortcodes added - thanks [Ellen Hutchings](http://github.com/ellenhutchings)!
-- `0.3.0` - Apr 28, 2016. Turkey region fix; source data moved to separate repo: https://github.com/country-regions/country-region-data
-- `0.2.4` - Feb 11, 2016. South Africa data updated. Custom build option added to let you generate smaller JS files
-containing only the country data you need.
-- `0.2.3` - Feb 11, 2016. Indonesia, Mexico data updated.
-- `0.2.2` - Oct 22, 2015. Update regions of Spain to match postal regions.
-- `0.2.1` - Oct 20, 2015. Bug fix with Norwegian JS data.
-- `0.2.0` - Oct 18, 2015. `data-whitelist` and `data-blacklist` options added to Country dropdowns. Support for 
-`data-value="shortcode"` option for Regions dropdowns. 
-- `0.1.9` - Aug 27, 2015. Option added to let you omit default option; NZ regions updated.
-- `0.1.8` - June 19, 2015. Fix for Norway regions.
-- `0.1.7` - May 2, 2015. Updated UK counties.
-- `0.1.6` - Apr 10, 2015. Russian regions updated by @Konair0s
-- `0.1.5` - Apr 5, 2015. Bug fix.
-- `0.1.4` - Apr 4, 2015. Lib now wrapped in UMD (accessible with RequireJS, CommonJS, Node); custom init() function exposed
-- `0.1.3` - Feb 10, 2015. Updated Ukraine regions.
-- `0.1.2` - Nov 1, 2014. Fix for typo in UK counties list.
-- `0.1.1` - April 24, 2014. Updated country list for ISO 3166 countries and short codes
-- `0.1.0` - March 27, 2014. Initial version
+- `0.1` - September 23, 2021. Initial version
 
 ### License
 
