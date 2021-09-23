@@ -1,8 +1,10 @@
 # Zuora Compatible Country Region Selector
 
-## Original author: https://github.com/country-regions/country-region-selector
-## Original country and region data: https://github.com/country-regions/country-region-data/blob/master/data.json
+**Original author:** https://github.com/country-regions/country-region-selector
 
+**Original country and region data:** https://github.com/country-regions/country-region-data/blob/master/data.json
+
+### About
 Connected country and region dropdown, where the region field gets automatically updated when the user selects a country. This is compatible with Zuora, namely the states/regions for United States and Canada. Zuora validates these two countries and not any other.
 
 - [standalone script](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/crs.min.js) (no dependencies, just plain JS)
