@@ -1,6 +1,6 @@
 {
   "name": "zuora-compat-country-region-selector",
-  "version": "0.1",
+  "version": "v0.1.2",
   "description": "A simple, configurable JS library that add a country dropdown that automatically updates a corresponding region dropdown in your forms.",
   "main": "dist/crs.min.js",
   "scripts": {
