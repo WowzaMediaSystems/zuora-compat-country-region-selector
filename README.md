@@ -154,7 +154,7 @@ That will then re-generate the minified files in your ./dist folder.
 
 ### Changelog
 
-- `0.1` - September 23, 2021. Initial version
+- `0.1.3` - September 23, 2021. Initial working release
 
 ### License
 
