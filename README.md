@@ -8,7 +8,7 @@
 Connected country and region dropdown, where the region field gets automatically updated when the user selects a country. This is compatible with Zuora, namely the states/regions for United States and Canada. Zuora validates these two countries and not any other.
 
 - [standalone script](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/crs.min.js) (no dependencies, just plain JS)
-- [jQuery-dependent version](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/jquery.crs.min.js) 
+- [jQuery-dependent version](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector/tree/master/dist/jquery.crs.min.js)
 - [React component](https://github.com/WowzaMediaSystems/zuora-compat-country-region-selector) (separate repo).
 
 The files contain all the country and region strings. If you know you're only going to need a small subset of all countries, you may want to generate a custom build containing only that info. That will substantially reduce the file size. See the Custom Builds section at the bottom of this page for more info.
@@ -64,22 +64,22 @@ and behaviour.
 - `data-default-value` - optional. The default selected value in the country dropdown (e.g. "Canada")
 - `data-value="shortcode"` - optional. The default behaviour is for the value attributes of the country dropdown options
 to be the full country name. If you'd rather use a 2-char code, add this attribute. Note: the 2-char codes are **mostly**
-ISO standard 2-char country codes, but not all. They are, however, unique across the dataset. N.B. This setting used 
-to be named `2-char`, but was renamed for consistency with the new region option. For backward compatibility `2-char` 
+ISO standard 2-char country codes, but not all. They are, however, unique across the dataset. N.B. This setting used
+to be named `2-char`, but was renamed for consistency with the new region option. For backward compatibility `2-char`
 still works.
-- `data-whitelist` - optional. A comma-delimited lists of country shortcodes that you want to appear in the dropdown. 
+- `data-whitelist` - optional. A comma-delimited lists of country shortcodes that you want to appear in the dropdown.
 Anything not specified here will be omitted. Take look here for the country list:
-source/data.json - you'll want to use the second index 
-of the array, e.g. "AF" for Afghanistan, or "DE" for Germany. Note: if you're worried about file sizes, you can also 
-choose to generate a custom build of the script that only contains those countries you need. This would replace the 
+source/data.json - you'll want to use the second index
+of the array, e.g. "AF" for Afghanistan, or "DE" for Germany. Note: if you're worried about file sizes, you can also
+choose to generate a custom build of the script that only contains those countries you need. This would replace the
 need for this option. See the Custom Builds section below.
 - `data-blacklist` - optional. Like the data-whitelist, only a blacklist! This lets you display all countries *except*
-the countries that you specify here. If you supply both white and blacklists, the blacklist setting is ignored. Just enter 
-a comma delimited list of country shortcodes. Again, take look here for the country list + their shortcodes: 
+the countries that you specify here. If you supply both white and blacklists, the blacklist setting is ignored. Just enter
+a comma delimited list of country shortcodes. Again, take look here for the country list + their shortcodes:
 source/data.json
-- `data-preferred` - optional. Lets you target specific countries to get listed at the top of the country dropdown. 
+- `data-preferred` - optional. Lets you target specific countries to get listed at the top of the country dropdown.
 This should contain a comma-delimited list of the country short codes you want moved, e.g. `data-preferred="CA,US,MX"`.
-- `data-preferred-delim` - optional. If you use the `data-preferred` option, you may want a line separating them from 
+- `data-preferred-delim` - optional. If you use the `data-preferred` option, you may want a line separating them from
 the other countries in the list. This setting lets you provide a string that will act as separator.
 
 
@@ -91,27 +91,27 @@ that shows up after a user has selected a country.
 - `data-show-default-option` - optional. True by default. This shows the "Select Region" default option (or whatever
 string you've set). Set it to "false" to turn it off.
 - `data-default-value` - optional. The default selected value in the region dropdown (e.g. "British Columbia", or "BC" if using the data-value="shortcode" option)
-- `data-value="shortcode"` - optional. By default, region dropdowns will display the full region name. This option lets 
+- `data-value="shortcode"` - optional. By default, region dropdowns will display the full region name. This option lets
 you show a 2-code abbreviation instead. **Please note that all the abbreviations have not yet been added. See
-[this thread](https://github.com/country-regions/country-region-selector/issues/2) that explains how the structure works.** If 
+[this thread](https://github.com/country-regions/country-region-selector/issues/2) that explains how the structure works.** If
 a region field is set to 2-char and a user user selects a country that doesn't have a region, it will show the full
 country name instead.
 
 
-### Working with dynamic HTML 
+### Working with dynamic HTML
 
-In case your page is being generated on the fly, you'll need to manually re-initialize the script after the new DOM 
-content is inserted. 
+In case your page is being generated on the fly, you'll need to manually re-initialize the script after the new DOM
+content is inserted.
 
 ##### AMD example
 
-With AMD (requireJS), just include the lib as you usually would. If you inspect the return value, you'll see it has a 
+With AMD (requireJS), just include the lib as you usually would. If you inspect the return value, you'll see it has a
 single `init` function. Just call that method whenever you need it (i.e. after new DOM content is inserted into your
 page).
 
 ```javascript
 define(['/path/to/crs.min'], function(crs) {
-    // when you're ready... 
+    // when you're ready...
     crs.init();
 });
 ```
@@ -119,22 +119,22 @@ define(['/path/to/crs.min'], function(crs) {
 
 If you're just including the crs.min.js in a `<script>` tag in your page, it'll automatically expose a `crs` property
 on your global `window` object. Then you can call `window.crs.init()` whenever your new page content has been dynamically
-inserted. That will initialize the newly inserted country-region fields. 
+inserted. That will initialize the newly inserted country-region fields.
 
 
 ### Custom Builds
 
-As of 0.2.4, you can generate a custom version of the library that contains only those countries you need. This can 
-substantially reduce the overall file size, if that's important to you. 
- 
-To do this, follow the instructions in the following section to get your dev environment set up, then instead of the 
+As of 0.2.4, you can generate a custom version of the library that contains only those countries you need. This can
+substantially reduce the overall file size, if that's important to you.
+
+To do this, follow the instructions in the following section to get your dev environment set up, then instead of the
 last step, run: `grunt customBuild --countries="Canada,United States"`
 
-Just add whatever countries you want to include. To find the exact country names, take a look at the data in *source/data.json* 
+Just add whatever countries you want to include. To find the exact country names, take a look at the data in *source/data.json*
 
-This will generate new files in the `/dist` folder that you can use. 
+This will generate new files in the `/dist` folder that you can use.
 
-If the country name you're targeting contains a comma, just escape with with a single backslash, like so: 
+If the country name you're targeting contains a comma, just escape with with a single backslash, like so:
 `grunt customBuild --countries="Côte d'Ivoire\, Republic of, Congo\, Republic of the (Brazzaville)"`
 
 
@@ -154,6 +154,7 @@ That will then re-generate the minified files in your ./dist folder.
 
 ### Changelog
 
+- `0.1.5` - October 27, 2022. Building distributable
 - `0.1.4` - October 27, 2022. Updating the country name Macedonia
 - `0.1.3` - September 23, 2021. Initial working release
 
