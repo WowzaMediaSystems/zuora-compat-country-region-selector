@@ -154,6 +154,7 @@ That will then re-generate the minified files in your ./dist folder.
 
 ### Changelog
 
+- `0.1.4` - October 27, 2022. Updating the country name Macedonia
 - `0.1.3` - September 23, 2021. Initial working release
 
 ### License
